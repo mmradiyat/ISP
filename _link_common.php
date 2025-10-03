@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<!-- <?php session_start(); ?> -->
 <!-- _link_common.php -->
  
 <link rel="icon" type="image/x-icon" href="images/logo/title_logo.png">

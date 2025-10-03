@@ -12,7 +12,7 @@
             </button>
 
             <!-- Page Name -->
-            <a class="navbar-brand text-uppercase" href="about.php"><?php echo $page_name;?></a>
+            <a class="navbar-brand text-uppercase" href="dash_admin.php"><?php echo $page_name;?></a>
 
             <!-- Nab Icon -->
             <div class="nav-icon">

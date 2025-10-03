@@ -17,6 +17,8 @@
 
 
 </head>
+
+<!-- style="background-color: #5b3104ff" -->
 <body>
 
 <?php
@@ -82,12 +84,12 @@
     $employee_num = mysqli_num_rows($find_employee);
 
     // Get number of task
-    $find_task_sql = "SELECT * FROM `task` WHERE `state` != 'Completed'";
+    $find_task_sql = "SELECT * FROM `task` WHERE `state` = 'Pending'";
     $find_task = mysqli_query($connect, $find_task_sql);
     $task_num = mysqli_num_rows($find_task);
 
     // Fetch complaints from the database
-    $complaint_sql = "SELECT * FROM complaint WHERE 1";
+    $complaint_sql = "SELECT * FROM complaint WHERE `state` = 'Pending'";
     $find_complains = mysqli_query($connect, $complaint_sql);
     $complaint_num = mysqli_num_rows($find_complains);
 
@@ -116,6 +118,11 @@
             $organizational_revenue[$index] += (int)$row['organizational_plan'];
         }
     }
+
+    // Get number of unpaid bills
+    $find_payment_sql = "SELECT * FROM `bill` WHERE `state` = 'Unpaid'";
+    $find_payment = mysqli_query($connect, $find_payment_sql);
+    $payment_num = mysqli_num_rows($find_payment);
     
 
     // Close the database connection
@@ -130,9 +137,9 @@
             <!-- Customers -->
             <div class="col-auto p-2">
                 <div class="card-box card-2 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #bc6c25"></div>
+                    <div class="card-side rounded-start" style="background-color: #04300bff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-people-line" style="color: #bc6c25"></i> Customers</h5>
+                        <h5><i class="fa-solid fa-people-line" style="color: #045317ff"></i> Customers</h5>
                         <p>Total Customer: <?php echo "$customer_num"; ?></p>
                             <a class="btn btn-secondary rounded p-2" href="customer_list.php">Customers</a>
                     </div>
@@ -142,12 +149,12 @@
             <!-- Residential Plans -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: blue"></div>
+                    <div class="card-side rounded-start" style="background-color: #046424ff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-house-laptop" style="color: blue"></i> Residential Plans</h5>
+                        <h5><i class="fa-solid fa-house-laptop" style="color: #046424ff"></i> Residential Plans</h5>
                         <p>Residential Plans: <?php echo "$residential_plans_num"; ?></p>
                         <form method="post">
-                            <button class="btn btn-secondary rounded" type="submit" name="residential_plans">
+                            <button class="btn btn-secondary rounded p-2" type="submit" name="residential_plans">
                                 See Plans
                             </button>
                         </form>
@@ -158,9 +165,9 @@
             <!-- Organizational plans -->
             <div class="col-auto p-2">
                 <div class="card-box card-2 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #e09f3e"></div>
+                    <div class="card-side rounded-start" style="background-color: #039534ff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-building" style="color: #e09f3e"></i> Organizational plans</h5>
+                        <h5><i class="fa-solid fa-building" style="color: #039534ff"></i> Organizational plans</h5>
                         <p>Organizational Plans: <?php echo "$organizational_plans_num"; ?></p>
                         <form method="post">
                             <button class="btn btn-secondary rounded p-2" type="submit" name="organizational_plans">
@@ -174,9 +181,9 @@
             <!-- Connections -->
             <div class="col-auto p-2">
                 <div class="card-box card-2 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #003049"></div>
+                    <div class="card-side rounded-start" style="background-color: #10f257ff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-circle-nodes" style="color: #003049"></i> Connections</h5>
+                        <h5><i class="fa-solid fa-circle-nodes" style="color: #10f257ff"></i> Connections</h5>
                         <p>Total Connections: <?php echo "$connections_num"; ?></p>
                         <a class="btn btn-secondary rounded p-2" href="connections_admin.php">Connections</a>
                     </div>
@@ -186,9 +193,9 @@
             <!-- New connections -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: green"></div>
+                    <div class="card-side rounded-start" style="background-color: #707d06ff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-plus" style="color: green"></i> Connections Requests</h5>
+                        <h5><i class="fa-solid fa-plus" style="color: #707d06ff"></i> Connections Requests</h5>
                         <p>Pending Connection Requests: <?php echo "$new_connections_num"; ?></p>
                         <form method="post">
                             <button class="btn btn-secondary" type="submit" name="new_connections">See Requests</button>
@@ -200,9 +207,9 @@
             <!-- Connection Update -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #ffb703"></div>
+                    <div class="card-side rounded-start" style="background-color: #a57907ff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-circle-up" style="color: #ffb703"></i> Update Requests</h5>
+                        <h5><i class="fa-solid fa-circle-up" style="color: #a57907ff"></i> Update Requests</h5>
                         <p>Pending Update Requests: <?php echo "$update_connections_num"; ?></p>
                         <form method="post">
                             <button class="btn btn-secondary" type="submit" name="update_connections">See Requests</button>
@@ -214,9 +221,9 @@
             <!-- Delete Connections -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: red"></div>
+                    <div class="card-side rounded-start" style="background-color: #e2a50aff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-trash-can" style="color: red"></i> Disconnection Requests</h5>
+                        <h5><i class="fa-solid fa-trash-can" style="color: #e2a50aff"></i> Disconnection Requests</h5>
                         <p>Disconnection Requests: <?php echo "$disconnect_connections_num"; ?></p>
                         <form method="post">
                             <button class="btn btn-secondary" type="submit" name="disconnect_connections">See Requests</button>
@@ -228,9 +235,9 @@
             <!-- Employee -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #606c38"></div>
+                    <div class="card-side rounded-start" style="background-color: #ffd773ff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-users-gear" style="color: #606c38"></i> Manage Employee</h5>
+                        <h5><i class="fa-solid fa-users-gear" style="color: #ffd773ff"></i> Manage Employee</h5>
                         <p>Employees: <?php echo "$employee_num"; ?></p>
                         <a class="btn btn-secondary rounded p-2" href="employee.php">Employee</a>
                     </div>
@@ -240,9 +247,9 @@
             <!-- Task -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #9d8189"></div>
+                    <div class="card-side rounded-start" style="background-color: #560405ff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-list-check" style="color: #9d8189"></i> Tasks</h5>
+                        <h5><i class="fa-solid fa-list-check" style="color: #560405ff"></i> Tasks</h5>
                         <p>Pending Task: <?php echo "$task_num"; ?></p>
                         <a class="btn btn-secondary rounded p-2" href="task_reports.php">Task list</a>
                     </div>
@@ -252,9 +259,9 @@
             <!-- Complaints -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #000000"></div>
+                    <div class="card-side rounded-start" style="background-color: #860608ff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-not-equal" style="color: #000000"></i> Complaints</h5>
+                        <h5><i class="fa-solid fa-not-equal" style="color: #860608ff"></i> Complaints</h5>
                         <p>Pending Complaints: <?php echo $complaint_num; ?></p>
                         <a class="btn btn-secondary rounded p-2" href="complaints.php">Complaints</a>
                     </div>
@@ -264,10 +271,10 @@
             <!-- Payment Reports -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #e63946"></div>
+                    <div class="card-side rounded-start" style="background-color: #b1070aff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-solid fa-money-check-dollar" style="color: #e63946"></i> Payment Reports</h5>
-                        <p>Pending Payment: 30</p>
+                        <h5><i class="fa-solid fa-money-check-dollar" style="color: #b1070aff"></i> Payment Reports</h5>
+                        <p>Pending Payment: <?php echo "$payment_num"; ?></p>
                         <a class="btn btn-secondary rounded p-2" href="paymentreport.php">Reports</a>
                     </div>
                 </div>
@@ -276,16 +283,16 @@
             <!-- footer view control -->
             <div class="col-auto p-2">
                 <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                    <div class="card-side rounded-start" style="background-color: #8ac926"></div>
+                    <div class="card-side rounded-start" style="background-color: #f42c2fff"></div>
                     <div class="card-text">
-                        <h5><i class="fa-regular fa-eye" style="color: #8ac926"></i> Customer View Control</h5>
+                        <h5><i class="fa-regular fa-eye" style="color: #f42c2fff"></i> Customer View Control</h5>
                         <a class="btn btn-secondary rounded p-2" href="footer_view_control.php">Edit</a>
                     </div>
                 </div>
             </div>
 
             <!-- Supper admin control -->
-            <?php
+            <!-- <?php
                 if ($_SESSION['user'] == "sup_admin"){
                     echo '
                     <div class="col-auto p-2">
@@ -298,7 +305,7 @@
                         </div>
                     </div>';
                 }
-            ?>
+            ?> -->
         </div>
 
         
@@ -317,7 +324,7 @@
             <div class="col-lg-4 col-sm-12 my-3">
                 <div class="bg-light rounded p-3" style="width: 100%;">
                     <h5 class=" text-center"><b>Connection Category Ratio</b></h5>
-                    <h6 class=" text-center"><b>Total Connections: <?php echo $organizational_plans_num + $residential_plans_num; ?></b></h6>
+                    <h6 class=" text-center"><b>Total Connections: <?php echo $organizational_connections_num + $residential_connections_num; ?></b></h6>
                     <canvas id="doughnut_pi_plans"></canvas>
                 </div>
             </div>
@@ -340,8 +347,8 @@
                     {
                         data: [<?php echo $residential_connections_num; ?>, <?php echo $organizational_connections_num; ?>],
                         backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)'
+                            'rgba(108, 203, 8, 1)',
+                            'rgba(231, 99, 5, 1)'
                         ],
                         hoverOffset: 20
                     }
@@ -365,14 +372,14 @@
                     {
                         label: 'Residential Plan',
                         data: $residential_revenue,
-                        backgroundColor: ['rgba(188, 108, 37, 0.5)'],
+                        backgroundColor: ['rgba(57, 8, 236, 0.5)'],
                         borderWidth: 1,
                         order:2
                     },
                     {
                         label: 'Organizational plan',
                         data: $organizational_revenue,
-                        backgroundColor: ['rgba(42, 157, 143, 0.5)'],
+                        backgroundColor: ['rgba(100, 5, 35, 0.5)'],
                         borderWidth: 1,
                         order:2
                     }

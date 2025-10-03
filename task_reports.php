@@ -41,14 +41,18 @@
             // Close the database connection
             mysqli_close($connect);
 
-            // Season Variable for employee details
+            // Set session variable for employee details
             $_SESSION['employee_id_details'] = $_POST['em_id'];
     
-            // Generate the JavaScript code to open the new tab
-            echo "<script> window.open('employee_details_admin.php', '_blank');
-                newTab.onload = function() {
-                    window.location.href = window.location.href.split('?')[0];
-                };
+            // Redirect to employee details page in new tab
+            echo "<script>
+                var newTab = window.open('employee_details_admin.php', '_blank');
+                if (newTab) {
+                    newTab.focus();
+                } else {
+                    alert('Please allow popups for this site to view employee details in a new tab.');
+                    window.location.href = 'employee_details_admin.php';
+                }
             </script>";
     
             // Prevent form resubmission on reload
@@ -62,9 +66,9 @@
         <form method="get">
             <div class="input-group">
                 <!-- assign_task Button -->
-                <button type="submit" class="btn btn-success" name="assign_task">
+                <!-- <button type="submit" class="btn btn-success" name="assign_task">
                     <i class="fa-solid fa-plus"></i> Assign Task    
-                </button>
+                </button> -->
                 <select class="search-select" name="key" style="width: 20%;">
                     <option value="all" selected>Search By</option>
                     <option value="title">Title</option>
@@ -140,6 +144,7 @@
                                     <input class='visually-hidden' type='text' name='em_id' value='$task[employee_id]'</input>
                                     <button class='btn btn-success' type='submit' name='details'>Employee details</button>
                                 </form>
+                                
                             </td>
                         </tr>";
                 }

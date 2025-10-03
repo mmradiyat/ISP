@@ -61,7 +61,7 @@
         <!-- Completed Task -->
         <div class="col-auto p-2">
             <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                <div class="card-side rounded-start" style="background-color: green"></div>
+                <div class="card-side rounded-start" style="background-color: rgb(0, 255, 0)"></div>
                 
                 <div class="card-text">
                     <h5><i class="fa-solid fa-check"></i> Completed Tasks</h5>
@@ -76,7 +76,7 @@
         <!-- Expired Task -->
         <div class="col-auto p-2">
             <div class="card-box card-1 text-bg-light rounded d-flex align-items-center">
-                <div class="card-side rounded-start" style="background-color: black"></div>
+                <div class="card-side rounded-start" style="background-color: yellow"></div>
                 
                 <div class="card-text">
                     <h5><i class="fa-solid fa-xmark"></i> Expired Tasks</h5>
@@ -124,8 +124,8 @@
                             data: [<?= $completed_task ?>, <?= $late_task ?>, <?= $pending_task ?>],
                             backgroundColor: [
                                 'rgb(0, 255, 0)',
-                                'rgb(255, 0, 0)',
-                                'rgb(0, 0, 255)'
+                                'rgba(218, 237, 7, 1)',
+                                'rgba(210, 12, 12, 1)'
                             ],
                             hoverOffset: 15
                         }

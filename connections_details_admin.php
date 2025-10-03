@@ -35,7 +35,7 @@
         if (strpbrk($connection['state'], "0123456789")!=false){$connection['state']="Update request pending";}
 
         //Get plan info
-        $plan_sql = "SELECT * FROM `{$connection['type']}` WHERE `id` = '{$connection['plan_id']}'";
+        $plan_sql = "SELECT * FROM `plans` WHERE `id` = '{$connection['plan_id']}' AND `type` = '{$connection['type']}'";
         $get_plan = mysqli_query($connect, $plan_sql);
         $plan = mysqli_fetch_assoc($get_plan);
 

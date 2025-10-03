@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('PROJECT_PATH')) {
-    define('PROJECT_PATH', 'http://localhost/pro_in_laragon/Internet-Service-Provider'); // replace this value with your project path
+    define('PROJECT_PATH', 'http://localhost/ISP'); // replace this value with your project path
 }
 
 if (!defined('IS_SANDBOX')) {

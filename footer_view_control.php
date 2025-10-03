@@ -75,67 +75,67 @@
         <form method="post">
             <!-- address_text -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Address</label>
                 <input type="text" name="address_text" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['address_text'].'"'?> required>
             </div>
             
             <!-- address_link -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Address Link</label>
                 <input type="text" name="address_link" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['address_link'].'"'?> required>
             </div>
             
             <!-- phone_text -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Phone Number</label>
                 <input type="text" name="phone_text" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['phone_text'].'"'?> required>
             </div>
             
             <!-- phone_link -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Phone Link</label>
                 <input type="text" name="phone_link" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['phone_link'].'"'?> required>
             </div>
             
             <!-- mail_text -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Mail Address</label>
                 <input type="text" name="mail_text" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['mail_text'].'"'?> required>
             </div>
             
             <!-- mail_link -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Mail Link</label>
                 <input type="text" name="mail_link" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['mail_link'].'"'?> required>
             </div>
             
             <!-- fb_link -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Faceook</label>
                 <input type="text" name="fb_link" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['fb_link'].'"'?> required>
             </div>
             
             <!-- ms_link -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Massenger Link</label>
                 <input type="text" name="ms_link" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['ms_link'].'"'?> required>
             </div>
             
             <!-- wh_link -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">WhatsApp Link</label>
                 <input type="text" name="wh_link" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['wh_link'].'"'?> required>
             </div>
             
             <!-- in_link -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Instagram Link</label>
                 <input type="text" name="in_link" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['in_link'].'"'?> required>
             </div>
             
             <!-- yt_link -->
             <div class="mb-3">
-                <label for="plan_name" class="form-label">Address text</label>
+                <label for="plan_name" class="form-label">Youtybe Link</label>
                 <input type="text" name="yt_link" class="form-control" id="plan_name" <?php echo 'value="'.$footer_info['yt_link'].'"'?> required>
             </div>
 

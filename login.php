@@ -130,11 +130,11 @@
             </div>
 
             <!-- Forgot Password Link -->
-            <div class="position-relative bg-light">
+            <!-- <div class="position-relative bg-light">
                 <div class="position-absolute top-0 end-0">
                     <a href="forgot-pass.php">Forgot Password?</a><br>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Choose User Role -->
             <label class="text-light fs-6">Choose Your Role</label>
@@ -166,11 +166,11 @@
     </div>
 
     <!-- Taste login data -->
-     <div class='container bg-black my-4 p-3 rounded' style='width: 450px'>
+     <!-- <div class='container bg-black my-4 p-3 rounded' style='width: 450px'>
         <div>
             <h4 class='bg-info text-center rounded p-2'><b>Login data are given bellow for testing popups.</b></h4>
 
-            <!-- Employee and Admin table -->
+            
             <div>
                 <div class='bg-warning  fs-5 rounded-top p-2'><b><u>Employees and admin:</u></b></div> 
                 <table class="table table-striped">
@@ -195,7 +195,7 @@
                 </table>
             </div>
 
-            <!-- Customer table -->
+          
             <div>
                 <div class='bg-success fs-5 rounded-top p-2'><b><u>Employees and admin:</u></b></div> 
                 <table class="table table-striped">
@@ -216,7 +216,7 @@
                 </table>
             </div>
         </div>
-     </div>
+     </div> -->
 
     <!-- Footer -->
     <?php include '_footer_common.php';?>

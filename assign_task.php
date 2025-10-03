@@ -20,6 +20,8 @@
     $page_type = "manage_employee";
     $page_name = "Assign Task";
 
+    $error = "";
+
     //Variable
     $key = "all";
     $word = "";
@@ -74,39 +76,51 @@
             $end_date = $_POST['end_date'];
             $address = $_POST['task_address'];
 
-            //insert task
-            $task_insertion_sql = "INSERT INTO `task` (`name`, `state`, `address`, `employee_id`, `task_ref`, `details`, `start`, `end`) VALUES ('$name', 'Pending', '$address', '$em_id', '$ref', '$details', '$start_date', '$end_date');";
-            // connect to the database
-            require '_database_connect.php';
-            $run_task_insertion = mysqli_query($connect, $task_insertion_sql);
-            // Close the database connection
-            mysqli_close($connect);
+            // Start_date must be today or later
+            if (strtotime($start_date) < strtotime('today')) {
+                $error = "Starting date must be today or later.";
+            }
 
-            if($run_task_insertion){
-                unset($_SESSION['employee_id_task']);
+            // End_date must be at least 2 days after start_date
+            if (strtotime($end_date) < strtotime($start_date . ' +2 days')) {
+                $error = "Please select a date that’s at least 2 days later than the starting date.";
+            }
+
+            if($error==""){
+                //insert task
+                $task_insertion_sql = "INSERT INTO `task` (`name`, `state`, `address`, `employee_id`, `task_ref`, `details`, `start`, `end`) VALUES ('$name', 'Pending', '$address', '$em_id', '$ref', '$details', '$start_date', '$end_date');";
+                // connect to the database
+                require '_database_connect.php';
+                $run_task_insertion = mysqli_query($connect, $task_insertion_sql);
+                // Close the database connection
+                mysqli_close($connect);
+
+                if($run_task_insertion){
+                    unset($_SESSION['employee_id_task']);
 
 
-                //Set a IN process state in connection state and redirect to the previous page
-                if(isset($_SESSION['connections_id_details'])){
-                    //Set the connection state based on previous state
-                    if($connection['state']=="Pending") $new_con_state = "Connection in process";
-                    elseif($connection['state']=="Update pending")  $new_con_state = "Update in process";
-                    elseif($connection['state']=="Disconnection pending")  $new_con_state = "Disconnection in process";
-                    else $new_con_state = "Active";
+                    //Set a IN process state in connection state and redirect to the previous page
+                    if(isset($_SESSION['connections_id_details'])){
+                        //Set the connection state based on previous state
+                        if($connection['state']=="Pending") $new_con_state = "Connection in process";
+                        elseif($connection['state']=="Update pending")  $new_con_state = "Update in process";
+                        elseif($connection['state']=="Disconnection pending")  $new_con_state = "Disconnection in process";
+                        else $new_con_state = "Active";
 
-                    //Insert state
-                    $update_connection_state_sql = "UPDATE `connections` SET `state` = '{$new_con_state}' WHERE `id` = '{$_SESSION['connections_id_details']}'";
-                    // connect to the database
-                    require '_database_connect.php';
-                    $update_connection_state = mysqli_query($connect, $update_connection_state_sql);
-                    // Close the database connection
-                    mysqli_close($connect);
+                        //Insert state
+                        $update_connection_state_sql = "UPDATE `connections` SET `state` = '{$new_con_state}' WHERE `id` = '{$_SESSION['connections_id_details']}'";
+                        // connect to the database
+                        require '_database_connect.php';
+                        $update_connection_state = mysqli_query($connect, $update_connection_state_sql);
+                        // Close the database connection
+                        mysqli_close($connect);
 
-                    unset($_SESSION['connections_id_details']);
-                    echo "<script> window.location.href='requests.php';</script>";
+                        unset($_SESSION['connections_id_details']);
+                        echo "<script> window.location.href='requests.php';</script>";
+                    }
+                    else echo "<script> window.location.href='task_reports.php';</script>";
+                    die();
                 }
-                else echo "<script> window.location.href='task_reports.php';</script>";
-                die();
             }
         } else{
             $no_employee = true;
@@ -282,6 +296,16 @@
         
         <!-- Assign Button -->
         <button type="submit" class="btn btn-success" name="assign"><i class="fa-solid fa-scroll"></i> Assign</button>
+
+        
+        <!-- Error massage -->
+        <?php
+            if($error!=""){
+                echo"<h5 class='text-warning'>{$error}</h5>";
+            }
+        
+        ?>
+
     </form>
 </div>
 
@@ -368,8 +392,6 @@
                                                 <input class='visually-hidden' type='text' name='employee_id' value='$employee[id]'</input>
 
                                                 <button class='btn btn-danger mb-1' type='submit' name='choose-em' data-bs-dismiss='modal' style='width: 114px'>Choose</button>
-
-                                                <button class='btn btn-success' type='submit' name='details' style='width: 114px'>Details</button>
                                             </form>
                                         </td>
                                         <td>$employee[phone]</td>

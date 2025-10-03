@@ -22,6 +22,7 @@
             echo "<script> window.location.href='task_reports.php';</script>";
             die();
         }
+        // echo"{$employee_id}";
         //Defining Page
         $page_type = $page_name = "Employee Details";
         
@@ -146,9 +147,9 @@
                     <form method='get'>
                         <div class='input-group'>
                             <!-- assign_task Button -->
-                            <button type='submit' class='btn btn-success' name='assign_task'>
+                            <!-- <button type='submit' class='btn btn-success' name='assign_task'>
                                 <i class='fa-solid fa-plus'></i> Assign Task    
-                            </button>
+                            </button> -->
                             <select class='search-select' name='key' style='width: 20%;'>
                                 <option value='all' selected>Search By</option>
                                 <option value='title'>Title</option>

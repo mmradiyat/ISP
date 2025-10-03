@@ -102,7 +102,6 @@ $recept_html = "
         <!-- Header -->
         <div style='margin: 0.5rem; padding: 0.5rem; background-color: #f8f9fa; border-radius: 0.25rem; border: 1px solid #ffc107; text-align: center;'>
 
-            <img style='width: 35px; height: 35px; border-radius: 50%; object-fit: cover;' src='images/logo/title_logo1.png'>
             <h5><b>Family Internet Service Provider</b></h5>
             <h3>Speed is our Identity</h3>
             <h2>".$org_info['address_text']."</h2>

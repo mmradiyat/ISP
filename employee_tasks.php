@@ -91,8 +91,7 @@
     // If Job done button clicked
     if (isset($_POST['job_done'])) {
 
-        // Sanitize input
-        $t_id = mysqli_real_escape_string($connect, $_POST['t_id']);
+        $t_id = $_POST['t_id'];
 
         // Get all needed info
         $insertion_info_sql = "SELECT 
@@ -112,14 +111,22 @@
         mysqli_stmt_bind_param($stmt, "s", $t_id);
         mysqli_stmt_execute($stmt);
         $insertion_result = mysqli_stmt_get_result($stmt);
-        mysqli_stmt_close($stmt);
         $insertion = mysqli_fetch_assoc($insertion_result);
+        mysqli_stmt_close($stmt);
+
+        // echo $insertion;
+
+        // Check if insertion data exists
+        if (!$insertion) {
+            echo '<script>alert("Task not found!"); window.location.replace("employee_tasks.php?task_type='.$task_type.'");</script>';
+            exit();
+        }
 
         $update_connection_sql = "";
         $cur_payments_sql = "";
 
-        // Update connection based on task reference Connection in proces
-        if ($insertion['con_state'] == "Connection in process") {
+        // Update connection based on task reference Connection in process
+        if (isset($insertion['con_state']) && $insertion['con_state'] == "Connection in process") {
             $update_connection_sql = "UPDATE `connections` 
                 SET `state` = 'Active',
                 `starting_date` = '{$insertion['s_date']}' 
@@ -133,7 +140,7 @@
                 VALUES ('{$insertion['con_id']}', '{$insertion['price']}', '$due_date')";
 
 
-        } elseif ($insertion['con_state'] == "Update in process") {
+        } elseif (isset($insertion['con_state']) && $insertion['con_state'] == "Update in process") {
             $update_connection_sql = "UPDATE `connections` 
                 SET
                     `state` = 'Active',
@@ -142,16 +149,24 @@
                 WHERE `id` = '{$insertion['con_id']}'
             ";
 
-        } elseif ($insertion['con_state'] == "Disconnection in process") {
+        } elseif (isset($insertion['con_state']) && $insertion['con_state'] == "Disconnection in process") {
             $update_connection_sql = "DELETE FROM `connections` WHERE `id` = '{$insertion['con_id']}'";
         }
 
-        // Execute update query
-        mysqli_query($connect, $update_connection_sql);
+        // Execute update query only if it's not empty
+        if (!empty($update_connection_sql)) {
+            if (!mysqli_query($connect, $update_connection_sql)) {
+                echo '<script>alert("Error updating connection: ' . mysqli_error($connect) . '"); window.location.replace("employee_tasks.php?task_type='.$task_type.'");</script>';
+                exit();
+            }
+        }
 
         // Insert payments if applicable
         if (!empty($cur_payments_sql)) {
-            mysqli_query($connect, $cur_payments_sql);
+            if (!mysqli_query($connect, $cur_payments_sql)) {
+                echo '<script>alert("Error inserting payment: ' . mysqli_error($connect) . '"); window.location.replace("employee_tasks.php?task_type='.$task_type.'");</script>';
+                exit();
+            }
         }
 
         // If the starting date is in the past, set it to today and mark as late
@@ -164,7 +179,10 @@
         // Update task state
         $t_state = $late ? "Late" : "Completed";
         $up_task_state_sql = "UPDATE `task` SET `state` = '{$t_state}', `completed_at` = NOW() WHERE `id` = '$t_id'";
-        mysqli_query($connect, $up_task_state_sql);
+        if (!mysqli_query($connect, $up_task_state_sql)) {
+            echo '<script>alert("Error updating task state: ' . mysqli_error($connect) . '"); window.location.replace("employee_tasks.php?task_type='.$task_type.'");</script>';
+            exit();
+        }
 
         // Close the database connection
         mysqli_close($connect);
