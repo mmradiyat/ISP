@@ -156,7 +156,7 @@
                 <div class="card-side rounded-start" style="background-color: black"></div>
                 <div class="card-text">
                     <h5><i class="fa-solid fa-paper-plane"></i> Complains</h5>
-                    <p>Unsolved Complain: <?php
+                    <p>Total Complain: <?php
                     echo $complaint_num;
                     ?></p>
                     <a class="btn btn-secondary rounded p-2" href="customer_info.php#complaint_history">Complain list</a>

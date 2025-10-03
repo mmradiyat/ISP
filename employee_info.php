@@ -88,17 +88,19 @@
             </div>
             <!-- Details -->
             <div class="col-auto m-2 ms-md-3">
-                <div class="bg-dark text-light rounded pb-1 pt-2 px-3 text-center"><h2><b><?php echo $employee["name"]?></b></h2></div>
-                <div class="details fs-5 mt-4">
-                    <p>
-                        <b>Post: </b><?php echo $employee['post'];?><br>
-                        <b>Address: </b><?php echo $employee['address'];?><br>
-                        <b>Email: </b><?php echo $employee['email'];?><br>
-                        <b>Phone: </b><?php echo $employee['phone'];?><br>
-                        <b>NID: </b><?php echo $employee['nid'];?><br>
-                        <b>Salary: </b><?php echo $employee['salary'];?>
-                    </p>
+                <div    
+                    class="bg-dark text-light rounded pb-1 pt-2 px-3 text-center"><h2><b><?php echo $employee["name"]?></b></h2>
                 </div>
+                    <div class="details fs-5 mt-4">
+                        <p>
+                            <b>Post: </b><?php echo $employee['post'];?><br>
+                            <b>Address: </b><?php echo $employee['address'];?><br>
+                            <b>Email: </b><?php echo $employee['email'];?><br>
+                            <b>Phone: </b><?php echo $employee['phone'];?><br>
+                            <b>NID: </b><?php echo $employee['nid'];?><br>
+                            <b>Salary: </b><?php echo $employee['salary'];?>
+                        </p>
+                    </div>
             </div>
         </div>
     </div>
@@ -113,10 +115,10 @@
             <!-- Search bar with filter -->
             <form method="get">
                 <div class="input-group">
-                    <!-- assign_task Button -->
+                    <!-- assign_task Button
                     <button type="submit" class="btn btn-success" name="assign_task">
                         <i class="fa-solid fa-plus"></i> Assign Task    
-                    </button>
+                    </button> -->
                     <select class="search-select" name="key" style="width: 20%;">
                         <option value="all" selected>Search By</option>
                         <option value="title">Title</option>

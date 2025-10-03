@@ -8,7 +8,9 @@
 
             <!-- Button to open Sidebar -->
             <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboard-sidebar" aria-controls="dashboard-sidebar" title="Dashboard">
-                <i class="fa-solid fa-angles-right"></i>
+                <!-- <i class="fa-solid fa-angles-right"></i> -->
+                 <i class="fa-solid fa-bars"></i>
+
             </button>
 
             <!-- Page Name -->

@@ -107,7 +107,7 @@
                 <?php else: ?>
                     <div class='my-2'>
                         <h5>Payment Amount: <?php echo number_format($total_due, 2); ?> BDT</h5>
-                        <p>N.T: Late fees are added if any bill is Late</p>
+                        <p>N.T: A late payment fee will be assessed for overdue invoices.</p>
                     </div>
                     <form id="payForm" action="pay.php" method="POST">
                         <input type="hidden" name="pay" value="all">

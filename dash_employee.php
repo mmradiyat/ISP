@@ -49,7 +49,7 @@
                 <div class="card-side rounded-start" style="background-color: red"></div>
                 
                 <div class="card-text">
-                    <h5><i class="fa-solid fa-list-check" style="color: #9d8189"></i>Pending Tasks</h5>
+                    <h5><i class="fa-solid fa-list-check" style="color: #c00a0aff"></i>Pending Tasks</h5>
 
                     <p>On-Going Task: <?php echo "$pending_task"; ?></p>
 
@@ -64,7 +64,7 @@
                 <div class="card-side rounded-start" style="background-color: rgb(0, 255, 0)"></div>
                 
                 <div class="card-text">
-                    <h5><i class="fa-solid fa-check"></i> Completed Tasks</h5>
+                    <h5><i class="fa-solid fa-check" style="color: #1fc00aff"></i> Completed Tasks</h5>
                     
                     <p>Completed Task: <?php echo "$completed_task"; ?></p>
                     
@@ -79,7 +79,7 @@
                 <div class="card-side rounded-start" style="background-color: yellow"></div>
                 
                 <div class="card-text">
-                    <h5><i class="fa-solid fa-xmark"></i> Expired Tasks</h5>
+                    <h5><i class="fa-solid fa-xmark" style="color: #7a8106ff"></i> Expired Tasks</h5>
                     
                     <p>Expired Task: <?php echo "$late_task"; ?></p>
                     
